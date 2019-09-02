@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vital Point Clock</title>
+
+    <style>
+      body {
+        text-align: center;
+        background: rgb(19, 19, 19);
+        color: white;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      }
+      #heading {
+      }
+
+      #time {
+      }
+
+      #kyusho {
+      }
+    </style>
+  </head>
+  <body>
+    <h1 id="heading">It's time of the <span id="zodiac"></span></h1>
+    <h2 id="time"></h2>
+    <h3 id="kyusho"></h3>
+    <script>
+      const zodiac = document.querySelector('#zodiac');
+      const time = document.querySelector('#time');
+      const kyusho = document.querySelector('#kyusho');
+
+      function calculateZodiac(time) {
+        switch (time) {
+          case 23:
+          case 0:
+            return { animal: 'Rat 🐀', vital: 'Gall Bladder' };
+          case 1:
+          case 2:
+            return { animal: 'Ox 🐂', vital: 'Liver' };
+          case 3:
+          case 4:
+            return { animal: 'Tiger 🐅', vital: 'Lung' };
+          case 5:
+          case 6:
+            return { animal: 'Rabbit 🐇', vital: 'Large Intenstine' };
+          case 7:
+          case 8:
+            return { animal: 'Dragon 🐉', vital: 'Stomach' };
+          case 9:
+          case 10:
+            return { animal: 'Snake 🐍', vital: 'Spleen' };
+          case 11:
+          case 12:
+            return { animal: 'Horse 🐴', vital: 'Heart' };
+          case 13:
+          case 14:
+            return { animal: 'Sheep 🐑', vital: 'Small Intenstine' };
+          case 15:
+          case 16:
+            return { animal: 'Monkey 🐒', vital: 'Bladder' };
+          case 17:
+          case 18:
+            return { animal: 'Rooster 🐓', vital: 'Kidney' };
+          case 19:
+          case 20:
+            return { animal: 'Dog 🐕', vital: 'Pericardium' };
+          case 21:
+          case 22:
+            return { animal: 'Pig 🐖', vital: 'Three Heater' };
+        }
+      }
+
+      function updatePage() {
+        const now = new Date();
+        time.innerHTML = `${now.getHours()}:${now.getMinutes()}:${now.getSeconds()}`;
+        const data = calculateZodiac(now.getHours());
+        zodiac.innerHTML = data.animal;
+        kyusho.innerHTML = `You should strike the ${data.vital} 👊`;
+      }
+
+      updatePage();
+      window.setInterval(updatePage, 1000);
+    </script>
+  </body>
+</html>
